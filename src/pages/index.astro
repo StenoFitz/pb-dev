@@ -11,354 +11,346 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
     <style>
-  *, *::before, *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
+      *, *::before, *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
 
-  :root {
-    --sky:      #2a6080;
-    --sky-mid:  #4a8aaa;
-    --sky-lt:   #a8ccdf;
-    --cream:    #fdf8f0;
-    --warm-off: #f0e8dc;
-    --peach:    #b86040;
-    --peach-lt: #d4845a;
-    --dark:     #0a0e14;
-    --muted:    #d4c0aa;
-  }
+      :root {
+        --sky:      #2a6080;
+        --sky-mid:  #4a8aaa;
+        --sky-lt:   #a8ccdf;
+        --cream:    #fdf8f0;
+        --warm-off: #f0e8dc;
+        --peach:    #b86040;
+        --peach-lt: #d4845a;
+        --dark:     #0a0e14;
+        --muted:    #d4c0aa;
+      }
 
-  html, body { height: 100%; }
+      html, body {
+        height: 100%;
+      }
 
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background-color: var(--dark);
-    color: var(--cream);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    position: relative;
-  }
+      body {
+        font-family: 'DM Sans', sans-serif;
+        background-color: var(--dark);
+        color: var(--cream);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow: hidden;
+        position: relative;
+      }
 
-  /* ── Background with photo ────────────────────────────── */
-  .bg-layer {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    background:
-      radial-gradient(ellipse 100% 50% at 50% 0%,   rgba(8, 12, 20, 0.88) 0%, transparent 65%),
-      radial-gradient(ellipse 100% 45% at 50% 100%,  rgba(8, 8, 14, 0.82) 0%, transparent 60%),
-      radial-gradient(ellipse 70%  50% at 50% 50%,   rgba(8, 12, 20, 0.40) 0%, transparent 70%),
-      url('/images/arunachala-bg.jpg') center/cover no-repeat;
-  }
+      /* ── Background with photo ────────────────────────────── */
+      .bg-layer {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        background:
+          radial-gradient(ellipse 100% 45% at 50% 0%,   rgba(8,12,20,0.85) 0%, transparent 65%),
+          radial-gradient(ellipse 100% 45% at 50% 100%,  rgba(8,8,14,0.90) 0%, transparent 60%),
+          radial-gradient(ellipse 60%  40% at 50% 50%,   rgba(8,12,20,0.20) 0%, transparent 70%),
+          url('/images/arunachala-bg.jpg') center/cover no-repeat;
+      }
 
-  .bg-layer::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-    opacity: 0.04;
-    pointer-events: none;
-  }
+      .bg-layer::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+        opacity: 0.04;
+        pointer-events: none;
+      }
 
-  /* ── Floating orb ─────────────────────────────────────── */
-  .orb {
-    position: fixed;
-    width: 650px;
-    height: 650px;
-    border-radius: 50%;
-    background: radial-gradient(circle at 40% 40%,
-      rgba(200, 120, 80, 0.14) 0%,
-      rgba(42, 96, 128, 0.10) 45%,
-      transparent 70%);
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    animation: orbFloat 12s ease-in-out infinite;
-    pointer-events: none;
-    z-index: 0;
-  }
+      /* ── Floating orb ─────────────────────────────────────── */
+      .orb {
+        position: fixed;
+        width: 650px;
+        height: 650px;
+        border-radius: 50%;
+        background: radial-gradient(circle at 40% 40%,
+          rgba(200,120,80,0.12) 0%,
+          rgba(42,96,128,0.08) 45%,
+          transparent 70%);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        animation: orbFloat 12s ease-in-out infinite;
+        pointer-events: none;
+        z-index: 0;
+      }
 
-  @keyframes orbFloat {
-    0%, 100% { transform: translate(-50%, -50%) scale(1);    }
-    33%       { transform: translate(-52%, -53%) scale(1.04); }
-    66%       { transform: translate(-48%, -47%) scale(0.97); }
-  }
+      @keyframes orbFloat {
+        0%, 100% { transform: translate(-50%, -50%) scale(1);    }
+        33%       { transform: translate(-52%, -53%) scale(1.04); }
+        66%       { transform: translate(-48%, -47%) scale(0.97); }
+      }
 
-  /* ── Content wrapper ──────────────────────────────────── */
-  .wrapper {
-    position: relative;
-    padding-top: 35vh;
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 2.5rem 2rem;
-    width: 100%;
-    max-width: 650px;
-    animation: fadeUp 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
-  }
+      /* ── Main layout ──────────────────────────────────────── */
+      main {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        min-height: 100vh;
+        padding: 0 1.5rem;
+      }
 
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(28px); }
-    to   { opacity: 1; transform: translateY(0);    }
-  }
+      /* ── Top section: circle + title ──────────────────────── */
+      .top-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 28vh;
+        animation: fadeUp 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
 
-  /* ── Breathing circle ─────────────────────────────────── */
-  .breath-ring {
-    width: 120px;
-    height: 120px;
-    margin-bottom: 3rem;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    animation: fadeUp 1.2s 0.1s cubic-bezier(0.22,1,0.36,1) both;
-  }
+      @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(28px); }
+        to   { opacity: 1; transform: translateY(0);    }
+      }
 
-  .breath-ring svg {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    animation: breathe 6s ease-in-out infinite;
-    transform-origin: center;
-  }
+      /* ── Breathing circle ─────────────────────────────────── */
+      .breath-ring {
+        width: 120px;
+        height: 120px;
+        margin-bottom: 2.5rem;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
 
-  @keyframes breathe {
-    0%, 100% { transform: scale(1);    opacity: 0.75; }
-    50%       { transform: scale(1.18); opacity: 1;    }
-  }
+      .breath-ring svg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        animation: breathe 6s ease-in-out infinite;
+        transform-origin: center;
+      }
 
-  .breath-ring .inner-dot {
-    width: 13px;
-    height: 13px;
-    border-radius: 50%;
-    background: var(--peach-lt);
-    position: relative;
-    z-index: 1;
-    animation: dotPulse 6s ease-in-out infinite;
-    box-shadow: 0 0 14px rgba(212,132,90,0.7);
-  }
+      @keyframes breathe {
+        0%, 100% { transform: scale(1);    opacity: 0.75; }
+        50%       { transform: scale(1.18); opacity: 1;    }
+      }
 
-  @keyframes dotPulse {
-    0%, 100% { transform: scale(1);   box-shadow: 0 0 12px rgba(212,132,90,0.6); }
-    50%       { transform: scale(1.4); box-shadow: 0 0 26px rgba(212,132,90,1);   }
-  }
+      .breath-ring .inner-dot {
+        width: 13px;
+        height: 13px;
+        border-radius: 50%;
+        background: var(--peach-lt);
+        position: relative;
+        z-index: 1;
+        animation: dotPulse 6s ease-in-out infinite;
+        box-shadow: 0 0 14px rgba(212,132,90,0.7);
+      }
 
-  /* ── Typography ───────────────────────────────────────── */
-  .eyebrow {
-    margin-top: 10vh;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 600;
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
-    color: var(--peach-lt);
-    margin-bottom: 0.9rem;
-    text-shadow: 0 1px 8px rgba(0,0,0,0.6);
-    animation: fadeUp 1.2s 0.15s cubic-bezier(0.22,1,0.36,1) both;
-  }
+      @keyframes dotPulse {
+        0%, 100% { transform: scale(1);   box-shadow: 0 0 12px rgba(212,132,90,0.6); }
+        50%       { transform: scale(1.4); box-shadow: 0 0 26px rgba(212,132,90,1);   }
+      }
 
-  h1 {
-    font-family: 'Cormorant Garant', serif;
-    font-weight: 300;
-    font-size: clamp(4rem, 12vw, 6rem);
-    letter-spacing: -0.01em;
-    line-height: 1;
-    margin-bottom: 0.2rem;
-    text-shadow: 0 2px 20px rgba(0,0,0,0.55);
-    animation: fadeUp 1.2s 0.2s cubic-bezier(0.22,1,0.36,1) both;
-  }
+      /* ── Typography ───────────────────────────────────────── */
+      .eyebrow {
+        font-family: 'DM Sans', sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+        color: var(--peach-lt);
+        margin-bottom: 0.9rem;
+        text-shadow: 0 1px 10px rgba(0,0,0,0.8);
+      }
 
-  h1 em {
-    font-style: italic;
-    color: var(--sky-lt);
-  }
+      h1 {
+        font-family: 'Cormorant Garant', serif;
+        font-weight: 300;
+        font-size: clamp(4rem, 12vw, 6rem);
+        letter-spacing: -0.01em;
+        line-height: 1;
+        text-shadow: 0 2px 24px rgba(0,0,0,0.7);
+        text-align: center;
+      }
 
-  .tagline {
-    font-family: 'Cormorant Garant', serif;
-    font-style: italic;
-    font-size: 1.3rem;
-    color: var(--muted);
-    margin-top: 0.5rem;
-    margin-bottom: 3rem;
-    animation: fadeUp 1.2s 0.28s cubic-bezier(0.22,1,0.36,1) both;
-  }
+      h1 em {
+        font-style: italic;
+        color: var(--sky-lt);
+      }
 
-  /* ── Divider ──────────────────────────────────────────── */
-  .divider {
-    display: flex;
-    align-items: center;
-    gap: 1.25rem;
-    width: 100%;
-    max-width: 450px;
-    margin-bottom: 3rem;
-    animation: fadeUp 1.2s 0.35s cubic-bezier(0.22,1,0.36,1) both;
-  }
+      /* ── Bottom section: card ─────────────────────────────── */
+      .bottom-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        padding-bottom: 5vh;
+        animation: fadeUp 1.2s 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
 
-  .divider-line {
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(to right, transparent, rgba(212,132,90,0.5));
-  }
+      /* ── Divider ──────────────────────────────────────────── */
+      .divider {
+        display: flex;
+        align-items: center;
+        gap: 1.25rem;
+        width: 100%;
+        max-width: 450px;
+        margin-bottom: 1.5rem;
+      }
 
-  .divider-line:last-child {
-    background: linear-gradient(to left, transparent, rgba(212,132,90,0.5));
-  }
+      .divider-line {
+        flex: 1;
+        height: 1px;
+        background: linear-gradient(to right, transparent, rgba(212,132,90,0.45));
+      }
 
-  .divider-icon {
-    color: var(--peach-lt);
-    opacity: 0.9;
-    font-size: 1.4rem;
-    line-height: 1;
-  }
+      .divider-line:last-child {
+        background: linear-gradient(to left, transparent, rgba(212,132,90,0.45));
+      }
 
-  /* ── Card ─────────────────────────────────────────────── */
-  .card {
-    width: 100%;
-    max-width: 475px;
-    background: rgba(10, 14, 20, 0.25);
-    margin-top: 25vh;
-    border: 1px solid rgba(168,204,223,0.25);
-    border-radius: 24px;
-    padding: 2.5rem 2.25rem 2.25rem;
-    backdrop-filter: blur(18px);
-    animation: fadeUp 1.2s 0.42s cubic-bezier(0.22,1,0.36,1) both;
-    text-align: center;
-  }
+      .divider-icon {
+        color: var(--peach-lt);
+        opacity: 0.9;
+        font-size: 1.4rem;
+        line-height: 1;
+      }
 
-  .session-label {
-    font-size: 0.85rem;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 0.6rem;
-  }
+      /* ── Card ─────────────────────────────────────────────── */
+      .card {
+        width: 100%;
+        max-width: 475px;
+        background: rgba(10, 14, 20, 0.82);
+        border: 1px solid rgba(168,204,223,0.25);
+        border-radius: 24px;
+        padding: 2.5rem 2.25rem 2.25rem;
+        backdrop-filter: blur(18px);
+        text-align: center;
+        margin-bottom: 1.75rem;
+      }
 
-  .session-title {
-    font-family: 'Cormorant Garant', serif;
-    font-size: 1.875rem;
-    font-weight: 400;
-    color: var(--cream);
-    margin-bottom: 0.5rem;
-  }
+      .session-title {
+        font-family: 'Cormorant Garant', serif;
+        font-size: 1.875rem;
+        font-weight: 400;
+        color: var(--cream);
+        margin-bottom: 0.5rem;
+      }
 
-  .session-time {
-    font-size: 1.1rem;
-    color: var(--peach-lt);
-    margin-bottom: 2.25rem;
-    opacity: 1;
-    font-weight: 500;
-  }
+      .session-time {
+        font-size: 1.1rem;
+        color: var(--peach-lt);
+        margin-bottom: 2.25rem;
+        font-weight: 500;
+      }
 
-  .join-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.75rem;
-    width: 100%;
-    padding: 18px 30px;
-    background: linear-gradient(135deg, var(--sky) 0%, var(--sky-mid) 100%);
-    color: #ffffff;
-    text-decoration: none;
-    border-radius: 14px;
-    font-size: 1.125rem;
-    font-weight: 600;
-    letter-spacing: 0.03em;
-    transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
-    box-shadow: 0 6px 28px rgba(42,96,128,0.65);
-    position: relative;
-    overflow: hidden;
-  }
+      .join-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        width: 100%;
+        padding: 18px 30px;
+        background: linear-gradient(135deg, var(--sky) 0%, var(--sky-mid) 100%);
+        color: #ffffff;
+        text-decoration: none;
+        border-radius: 14px;
+        font-size: 1.125rem;
+        font-weight: 600;
+        letter-spacing: 0.03em;
+        transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+        box-shadow: 0 6px 28px rgba(42,96,128,0.65);
+        position: relative;
+        overflow: hidden;
+      }
 
-  .join-btn::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 60%);
-    pointer-events: none;
-  }
+      .join-btn::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 60%);
+        pointer-events: none;
+      }
 
-  .join-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 36px rgba(42,96,128,0.75);
-    filter: brightness(1.1);
-  }
+      .join-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 36px rgba(42,96,128,0.75);
+        filter: brightness(1.1);
+      }
 
-  .join-btn:active { transform: translateY(0); }
+      .join-btn:active { transform: translateY(0); }
+      .join-btn svg { flex-shrink: 0; }
 
-  .join-btn svg { flex-shrink: 0; }
+      /* ── Footer ───────────────────────────────────────────── */
+      .footer {
+        font-size: 0.95rem;
+        color: var(--muted);
+        opacity: 0.8;
+        letter-spacing: 0.02em;
+        text-align: center;
+      }
 
-  /* ── Footer ───────────────────────────────────────────── */
-  .footer {
-    margin-top: 3rem;
-    font-size: 0.95rem;
-    color: var(--muted);
-    opacity: 0.85;
-    animation: fadeUp 1.2s 0.55s cubic-bezier(0.22,1,0.36,1) both;
-    letter-spacing: 0.02em;
-    text-align: center;
-  }
-
-  @media (max-width: 500px) {
-    .wrapper { padding: 2rem 1.25rem; }
-    .card    { padding: 2rem 1.5rem; }
-  }
-</style>
+      @media (max-width: 500px) {
+        .top-section  { margin-top: 22vh; }
+        .card         { padding: 2rem 1.5rem; }
+        main          { padding: 0 1rem; }
+      }
+    </style>
   </head>
   <body>
     <div class="bg-layer"></div>
     <div class="orb"></div>
 
-    <main class="wrapper">
+    <main>
 
-      <!-- Breathing circle -->
-      <div class="breath-ring">
-        <svg viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="48" cy="48" r="44" stroke="rgba(106,170,200,0.7)"  stroke-width="1.5"/>
-          <circle cx="48" cy="48" r="36" stroke="rgba(212,132,90,0.55)"  stroke-width="1"   stroke-dasharray="4 6"/>
-          <circle cx="48" cy="48" r="28" stroke="rgba(168,204,223,0.35)" stroke-width="0.75"/>
-        </svg>
-        <span class="inner-dot"></span>
-      </div>
-
-      <p class="eyebrow">New Website Coming Soon</p>
-
-      <h1>Pure<em>being</em></h1>
-
-
-      <div class="divider">
-        <span class="divider-line"></span>
-        <span class="divider-icon">✦</span>
-        <span class="divider-line"></span>
-      </div>
-
-      <div class="card">
- 
-        <p class="session-title">Weekly Online Meditation</p>
-        <p class="session-time">Every Monday · 9:00 PM Irish Time</p>
-
-        <a
-          href="https://us02web.zoom.us/j/88684664522?pwd=eFhHMUhmeFBEYkJyTERpSzBMdVdKdz09"
-          class="join-btn"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M15 10l4.553-2.069A1 1 0 0 1 21 8.87v6.26a1 1 0 0 1-1.447.899L15 14"/>
-            <rect x="3" y="8" width="12" height="8" rx="2"/>
+      <!-- Circle + title centred above the mountain -->
+      <div class="top-section">
+        <div class="breath-ring">
+          <svg viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="48" cy="48" r="44" stroke="rgba(106,170,200,0.7)"  stroke-width="1.5"/>
+            <circle cx="48" cy="48" r="36" stroke="rgba(212,132,90,0.55)"  stroke-width="1" stroke-dasharray="4 6"/>
+            <circle cx="48" cy="48" r="28" stroke="rgba(168,204,223,0.35)" stroke-width="0.75"/>
           </svg>
-          Join on Zoom
-        </a>
+          <span class="inner-dot"></span>
+        </div>
+
+        <p class="eyebrow">New Website Coming Soon</p>
+        <h1>Pure<em>being</em></h1>
       </div>
 
-      <p class="footer">The full site is on its way soon.</p>
+      <!-- Card near the bottom -->
+      <div class="bottom-section">
+        <div class="divider">
+          <span class="divider-line"></span>
+          <span class="divider-icon">✦</span>
+          <span class="divider-line"></span>
+        </div>
+
+        <div class="card">
+          <p class="session-title">Weekly Online Meditation</p>
+          <p class="session-time">Every Monday · 9:00 PM Irish Time</p>
+          
+            href="https://us02web.zoom.us/j/88684664522?pwd=eFhHMUhmeFBEYkJyTERpSzBMdVdKdz09"
+            class="join-btn"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M15 10l4.553-2.069A1 1 0 0 1 21 8.87v6.26a1 1 0 0 1-1.447.899L15 14"/>
+              <rect x="3" y="8" width="12" height="8" rx="2"/>
+            </svg>
+            Join on Zoom
+          </a>
+        </div>
+
+        <p class="footer">The full site is on its way soon.</p>
+      </div>
 
     </main>
   </body>
