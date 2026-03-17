@@ -6,311 +6,312 @@
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>Purebeing | Coming Soon</title>
+    <title>Purebeing | New Website Coming Soon</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
     <style>
-      *, *::before, *::after {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
 
-      :root {
-        --sage:     #4a6741;
-        --sage-mid: #6b8f61;
-        --sage-lt:  #c8d9c2;
-        --cream:    #f5f0e8;
-        --warm-off: #ede8de;
-        --gold:     #b89a5e;
-        --gold-lt:  #d4b87a;
-        --dark:     #1e2a1c;
-        --muted:    #7a8a74;
-      }
+  :root {
+    --sky:      #3a7a9c;
+    --sky-mid:  #6aaac8;
+    --sky-lt:   #bdd8e8;
+    --cream:    #faf5ee;
+    --warm-off: #f0e8dc;
+    --peach:    #c8785a;
+    --peach-lt: #e0a07a;
+    --dark:     #14181e;
+    --muted:    #a89888;
+  }
 
-      html, body {
-        height: 100%;
-      }
+  html, body {
+    height: 100%;
+  }
 
-      body {
-        font-family: 'DM Sans', sans-serif;
-        background-color: var(--dark);
-        color: var(--cream);
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-        position: relative;
-      }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background-color: var(--dark);
+    color: var(--cream);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+  }
 
-      /* ── Atmospheric background ───────────────────────────── */
-      .bg-layer {
-        position: fixed;
-        inset: 0;
-        z-index: 0;
-        background:
-          radial-gradient(ellipse 80% 60% at 20% 110%, rgba(74,103,65,0.55) 0%, transparent 65%),
-          radial-gradient(ellipse 60% 50% at 85% -10%,  rgba(184,154,94,0.18) 0%, transparent 60%),
-          radial-gradient(ellipse 100% 80% at 50% 50%,  #1e2a1c 0%, #0f1a0e 100%);
-      }
+  /* ── Background with photo ────────────────────────────── */
+  .bg-layer {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background:
+      radial-gradient(ellipse 100% 55% at 50% 0%,   rgba(15, 22, 35, 0.80) 0%, transparent 70%),
+      radial-gradient(ellipse 100% 50% at 50% 100%,  rgba(12, 10, 18, 0.70) 0%, transparent 65%),
+      radial-gradient(ellipse 60%  40% at 80% 50%,   rgba(10, 14, 22, 0.35) 0%, transparent 60%),
+      url('/images/arunachala-bg.jpg') center/cover no-repeat;
+  }
 
-      /* Grain overlay */
-      .bg-layer::after {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-        opacity: 0.035;
-        pointer-events: none;
-      }
+  /* Grain overlay */
+  .bg-layer::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
+  }
 
-      /* ── Floating orb ─────────────────────────────────────── */
-      .orb {
-        position: fixed;
-        width: 520px;
-        height: 520px;
-        border-radius: 50%;
-        background: radial-gradient(circle at 40% 40%,
-          rgba(107,143,97,0.22) 0%,
-          rgba(74,103,65,0.10) 45%,
-          transparent 70%);
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        animation: orbFloat 12s ease-in-out infinite;
-        pointer-events: none;
-        z-index: 0;
-      }
+  /* ── Floating orb ─────────────────────────────────────── */
+  .orb {
+    position: fixed;
+    width: 520px;
+    height: 520px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 40% 40%,
+      rgba(200, 140, 100, 0.12) 0%,
+      rgba(58, 122, 156, 0.08) 45%,
+      transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: orbFloat 12s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+  }
 
-      @keyframes orbFloat {
-        0%, 100% { transform: translate(-50%, -50%) scale(1);   }
-        33%       { transform: translate(-52%, -53%) scale(1.04); }
-        66%       { transform: translate(-48%, -47%) scale(0.97); }
-      }
+  @keyframes orbFloat {
+    0%, 100% { transform: translate(-50%, -50%) scale(1);    }
+    33%       { transform: translate(-52%, -53%) scale(1.04); }
+    66%       { transform: translate(-48%, -47%) scale(0.97); }
+  }
 
-      /* ── Content wrapper ──────────────────────────────────── */
-      .wrapper {
-        position: relative;
-        z-index: 1;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 2rem 1.5rem;
-        width: 100%;
-        max-width: 520px;
-        animation: fadeUp 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
-      }
+  /* ── Content wrapper ──────────────────────────────────── */
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1.5rem;
+    width: 100%;
+    max-width: 520px;
+    animation: fadeUp 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
 
-      @keyframes fadeUp {
-        from { opacity: 0; transform: translateY(28px); }
-        to   { opacity: 1; transform: translateY(0);    }
-      }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0);    }
+  }
 
-      /* ── Breathing circle ─────────────────────────────────── */
-      .breath-ring {
-        width: 96px;
-        height: 96px;
-        margin-bottom: 2.5rem;
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        animation: fadeUp 1.2s 0.1s cubic-bezier(0.22,1,0.36,1) both;
-      }
+  /* ── Breathing circle ─────────────────────────────────── */
+  .breath-ring {
+    width: 96px;
+    height: 96px;
+    margin-bottom: 2.5rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeUp 1.2s 0.1s cubic-bezier(0.22,1,0.36,1) both;
+  }
 
-      .breath-ring svg {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        animation: breathe 6s ease-in-out infinite;
-        transform-origin: center;
-      }
+  .breath-ring svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    animation: breathe 6s ease-in-out infinite;
+    transform-origin: center;
+  }
 
-      @keyframes breathe {
-        0%, 100% { transform: scale(1);    opacity: 0.6; }
-        50%       { transform: scale(1.18); opacity: 1;   }
-      }
+  @keyframes breathe {
+    0%, 100% { transform: scale(1);    opacity: 0.6; }
+    50%       { transform: scale(1.18); opacity: 1;   }
+  }
 
-      .breath-ring .inner-dot {
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        background: var(--gold);
-        position: relative;
-        z-index: 1;
-        animation: dotPulse 6s ease-in-out infinite;
-        box-shadow: 0 0 12px rgba(184,154,94,0.6);
-      }
+  .breath-ring .inner-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--peach-lt);
+    position: relative;
+    z-index: 1;
+    animation: dotPulse 6s ease-in-out infinite;
+    box-shadow: 0 0 12px rgba(224,160,122,0.6);
+  }
 
-      @keyframes dotPulse {
-        0%, 100% { transform: scale(1);    box-shadow: 0 0 10px rgba(184,154,94,0.5); }
-        50%       { transform: scale(1.4);  box-shadow: 0 0 22px rgba(184,154,94,0.9); }
-      }
+  @keyframes dotPulse {
+    0%, 100% { transform: scale(1);   box-shadow: 0 0 10px rgba(224,160,122,0.5); }
+    50%       { transform: scale(1.4); box-shadow: 0 0 22px rgba(224,160,122,0.9); }
+  }
 
-      /* ── Typography ───────────────────────────────────────── */
-      .eyebrow {
-        font-family: 'DM Sans', sans-serif;
-        font-size: 0.68rem;
-        font-weight: 500;
-        letter-spacing: 0.22em;
-        text-transform: uppercase;
-        color: var(--gold);
-        margin-bottom: 0.75rem;
-        animation: fadeUp 1.2s 0.15s cubic-bezier(0.22,1,0.36,1) both;
-      }
+  /* ── Typography ───────────────────────────────────────── */
+  .eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--peach-lt);
+    margin-bottom: 0.75rem;
+    animation: fadeUp 1.2s 0.15s cubic-bezier(0.22,1,0.36,1) both;
+  }
 
-      h1 {
-        font-family: 'Cormorant Garant', serif;
-        font-weight: 300;
-        font-size: clamp(3.2rem, 10vw, 4.8rem);
-        letter-spacing: -0.01em;
-        line-height: 1;
-        margin-bottom: 0.2rem;
-        animation: fadeUp 1.2s 0.2s cubic-bezier(0.22,1,0.36,1) both;
-      }
+  h1 {
+    font-family: 'Cormorant Garant', serif;
+    font-weight: 300;
+    font-size: clamp(3.2rem, 10vw, 4.8rem);
+    letter-spacing: -0.01em;
+    line-height: 1;
+    margin-bottom: 0.2rem;
+    animation: fadeUp 1.2s 0.2s cubic-bezier(0.22,1,0.36,1) both;
+  }
 
-      h1 em {
-        font-style: italic;
-        color: var(--sage-lt);
-      }
+  h1 em {
+    font-style: italic;
+    color: var(--sky-lt);
+  }
 
-      .tagline {
-        font-family: 'Cormorant Garant', serif;
-        font-style: italic;
-        font-size: 1.05rem;
-        color: var(--muted);
-        margin-top: 0.5rem;
-        margin-bottom: 2.5rem;
-        animation: fadeUp 1.2s 0.28s cubic-bezier(0.22,1,0.36,1) both;
-      }
+  .tagline {
+    font-family: 'Cormorant Garant', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--muted);
+    margin-top: 0.5rem;
+    margin-bottom: 2.5rem;
+    animation: fadeUp 1.2s 0.28s cubic-bezier(0.22,1,0.36,1) both;
+  }
 
-      /* ── Divider ──────────────────────────────────────────── */
-      .divider {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        width: 100%;
-        max-width: 360px;
-        margin-bottom: 2.5rem;
-        animation: fadeUp 1.2s 0.35s cubic-bezier(0.22,1,0.36,1) both;
-      }
+  /* ── Divider ──────────────────────────────────────────── */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    max-width: 360px;
+    margin-bottom: 2.5rem;
+    animation: fadeUp 1.2s 0.35s cubic-bezier(0.22,1,0.36,1) both;
+  }
 
-      .divider-line {
-        flex: 1;
-        height: 1px;
-        background: linear-gradient(to right, transparent, rgba(184,154,94,0.35));
-      }
+  .divider-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(224,160,122,0.35));
+  }
 
-      .divider-line:last-child {
-        background: linear-gradient(to left, transparent, rgba(184,154,94,0.35));
-      }
+  .divider-line:last-child {
+    background: linear-gradient(to left, transparent, rgba(224,160,122,0.35));
+  }
 
-      .divider-icon {
-        color: var(--gold);
-        opacity: 0.7;
-        font-size: 1.1rem;
-        line-height: 1;
-      }
+  .divider-icon {
+    color: var(--peach-lt);
+    opacity: 0.7;
+    font-size: 1.1rem;
+    line-height: 1;
+  }
 
-      /* ── Card ─────────────────────────────────────────────── */
-      .card {
-        width: 100%;
-        max-width: 380px;
-        background: rgba(255,255,255,0.04);
-        border: 1px solid rgba(200,217,194,0.12);
-        border-radius: 20px;
-        padding: 2rem 1.75rem 1.75rem;
-        backdrop-filter: blur(12px);
-        animation: fadeUp 1.2s 0.42s cubic-bezier(0.22,1,0.36,1) both;
-        text-align: center;
-      }
+  /* ── Card ─────────────────────────────────────────────── */
+  .card {
+    width: 100%;
+    max-width: 380px;
+    background: rgba(250,245,238,0.06);
+    border: 1px solid rgba(189,216,232,0.15);
+    border-radius: 20px;
+    padding: 2rem 1.75rem 1.75rem;
+    backdrop-filter: blur(14px);
+    animation: fadeUp 1.2s 0.42s cubic-bezier(0.22,1,0.36,1) both;
+    text-align: center;
+  }
 
-      .session-label {
-        font-size: 0.7rem;
-        font-weight: 500;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-        color: var(--muted);
-        margin-bottom: 0.5rem;
-      }
+  .session-label {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+  }
 
-      .session-title {
-        font-family: 'Cormorant Garant', serif;
-        font-size: 1.5rem;
-        font-weight: 400;
-        color: var(--cream);
-        margin-bottom: 0.4rem;
-      }
+  .session-title {
+    font-family: 'Cormorant Garant', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 0.4rem;
+  }
 
-      .session-time {
-        font-size: 0.88rem;
-        color: var(--gold-lt);
-        margin-bottom: 1.75rem;
-        opacity: 0.9;
-      }
+  .session-time {
+    font-size: 0.88rem;
+    color: var(--peach-lt);
+    margin-bottom: 1.75rem;
+    opacity: 0.9;
+  }
 
-      .join-btn {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.6rem;
-        width: 100%;
-        padding: 14px 24px;
-        background: linear-gradient(135deg, var(--sage) 0%, var(--sage-mid) 100%);
-        color: var(--cream);
-        text-decoration: none;
-        border-radius: 12px;
-        font-size: 0.9rem;
-        font-weight: 500;
-        letter-spacing: 0.03em;
-        transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
-        box-shadow: 0 4px 20px rgba(74,103,65,0.45);
-        position: relative;
-        overflow: hidden;
-      }
+  .join-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    width: 100%;
+    padding: 14px 24px;
+    background: linear-gradient(135deg, var(--sky) 0%, var(--sky-mid) 100%);
+    color: var(--cream);
+    text-decoration: none;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+    box-shadow: 0 4px 20px rgba(58,122,156,0.45);
+    position: relative;
+    overflow: hidden;
+  }
 
-      .join-btn::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 60%);
-        pointer-events: none;
-      }
+  .join-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 60%);
+    pointer-events: none;
+  }
 
-      .join-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 30px rgba(74,103,65,0.6);
-        filter: brightness(1.08);
-      }
+  .join-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(58,122,156,0.6);
+    filter: brightness(1.08);
+  }
 
-      .join-btn:active {
-        transform: translateY(0);
-      }
+  .join-btn:active {
+    transform: translateY(0);
+  }
 
-      .join-btn svg {
-        flex-shrink: 0;
-      }
+  .join-btn svg {
+    flex-shrink: 0;
+  }
 
-      /* ── Footer ───────────────────────────────────────────── */
-      .footer {
-        margin-top: 2.5rem;
-        font-size: 0.78rem;
-        color: var(--muted);
-        opacity: 0.65;
-        animation: fadeUp 1.2s 0.55s cubic-bezier(0.22,1,0.36,1) both;
-        letter-spacing: 0.02em;
-        text-align: center;
-      }
+  /* ── Footer ───────────────────────────────────────────── */
+  .footer {
+    margin-top: 2.5rem;
+    font-size: 0.78rem;
+    color: var(--muted);
+    opacity: 0.65;
+    animation: fadeUp 1.2s 0.55s cubic-bezier(0.22,1,0.36,1) both;
+    letter-spacing: 0.02em;
+    text-align: center;
+  }
 
-      @media (max-width: 400px) {
-        .wrapper { padding: 1.5rem 1rem; }
-        .card    { padding: 1.5rem 1.25rem; }
-      }
-    </style>
+  @media (max-width: 400px) {
+    .wrapper { padding: 1.5rem 1rem; }
+    .card    { padding: 1.5rem 1.25rem; }
+  }
+</style>
   </head>
   <body>
     <div class="bg-layer"></div>
@@ -321,14 +322,14 @@
       <!-- Breathing circle -->
       <div class="breath-ring">
         <svg viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="48" cy="48" r="44" stroke="rgba(107,143,97,0.5)" stroke-width="1"/>
-          <circle cx="48" cy="48" r="36" stroke="rgba(184,154,94,0.35)" stroke-width="0.75" stroke-dasharray="4 6"/>
-          <circle cx="48" cy="48" r="28" stroke="rgba(200,217,194,0.2)" stroke-width="0.5"/>
+          <circle cx="48" cy="48" r="44" stroke="rgba(106,170,200,0.5)"  stroke-width="1"/>
+          <circle cx="48" cy="48" r="36" stroke="rgba(224,160,122,0.35)" stroke-width="0.75" stroke-dasharray="4 6"/>
+          <circle cx="48" cy="48" r="28" stroke="rgba(189,216,232,0.2)"  stroke-width="0.5"/>
         </svg>
         <span class="inner-dot"></span>
       </div>
 
-      <p class="eyebrow">Coming Soon</p>
+      <p class="eyebrow">New Website Coming Soon</p>
 
       <h1>Pure<em>being</em></h1>
 
