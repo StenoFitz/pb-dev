@@ -35,7 +35,7 @@
       }
 
       body {
-        font-size: 105%; 
+        font-size: 100%; 
         font-family: 'DM Sans', sans-serif;
         background-color: var(--dark);
         color: var(--cream);
@@ -298,11 +298,44 @@
         text-align: center;
       }
 
+      /* ── Phone (up to 500px) ──────────────────── */
       @media (max-width: 500px) {
-        .top-section  { margin-top: 22vh; }
-        .card         { padding: 2rem 1.5rem; }
-        main          { padding: 0 1rem; }
+        body         { font-size: 80%; }              /* shrinks all rem-based text */
+        .top-section { margin-top: 18vh; }            /* less space above title */
+        h1           { font-size: clamp(2.5rem, 12vw, 3.5rem); }  /* smaller heading */
+        .breath-ring { width: 75px; height: 75px;     /* smaller circle */
+                      margin-bottom: 1.5rem; }
+        .eyebrow     { font-size: 0.7rem; }
+        .card        { padding: 1.5rem 1.25rem; 
+                      max-width: 100%; }
+        .session-title { font-size: 1.4rem; }
+        .session-time  { font-size: 0.95rem; 
+                        margin-bottom: 1.5rem; }
+        .join-btn    { font-size: 1rem; 
+                      padding: 14px 20px; }
+        .footer      { font-size: 0.8rem; }
+        main         { padding: 0 1rem; }
+        .bottom-section { padding-bottom: 3vh; }
       }
+
+      /* ── Tablet (501px–1024px) ────────────────── */
+      @media (min-width: 501px) and (max-width: 1024px) {
+        .top-section { margin-top: 25vh; }
+        .card        { max-width: 520px; }
+        body         { font-size: 105%; }
+      }
+
+      /* ── Desktop (1025px and above) ──────────── */
+      @media (min-width: 1025px) {
+        .top-section { margin-top: 28vh; }
+        body         { font-size: 110%; }
+      }
+
+      @media (max-width: 500px) {
+      h1 { font-size: clamp(3rem, 14vw, 4.4rem); } /* smaller floor on tiny screens */
+      .breath-ring { width: 90px; height: 90px; }  /* shrink the circle */
+      .bottom-section { padding-bottom: 3vh; }      /* less gap at bottom */
+    }
     </style>
   </head>
   <body>
