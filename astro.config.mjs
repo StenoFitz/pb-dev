@@ -48,7 +48,7 @@ const fontsConfig = Object.entries(theme.fonts.font_family)
 
 // https://astro.build/config
 export default defineConfig({
-  site: config.site.base_url ? config.site.base_url : "'https://stenofitz.github.io/pb-dev",
+  site: config.site.base_url ? config.site.base_url : "https://stenofitz.github.io/pb-dev",
   base: config.site.base_path ? config.site.base_path : "/pb-dev",
   trailingSlash: config.site.trailing_slash ? "always" : "never",
   image: { service: sharp() },
